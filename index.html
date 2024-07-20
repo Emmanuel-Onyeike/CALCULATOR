@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zubby Plus Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="calculator-header">Zubby Plus</div>
+        <div class="calculator-display">
+            <input type="text" id="display" readonly>
+        </div>
+        <div class="calculator-buttons">
+            <button class="btn" onclick="appendNumber('7')">7</button>
+            <button class="btn" onclick="appendNumber('8')">8</button>
+            <button class="btn" onclick="appendNumber('9')">9</button>
+            <button class="btn operator" onclick="setOperation('/')">÷</button>
+            <button class="btn" onclick="appendNumber('4')">4</button>
+            <button class="btn" onclick="appendNumber('5')">5</button>
+            <button class="btn" onclick="appendNumber('6')">6</button>
+            <button class="btn operator" onclick="setOperation('*')">×</button>
+            <button class="btn" onclick="appendNumber('1')">1</button>
+            <button class="btn" onclick="appendNumber('2')">2</button>
+            <button class="btn" onclick="appendNumber('3')">3</button>
+            <button class="btn operator" onclick="setOperation('-')">-</button>
+            <button class="btn" onclick="appendNumber('0')">0</button>
+            <button class="btn" onclick="appendNumber('.')">.</button>
+            <button class="btn operator" onclick="setOperation('+')">+</button>
+            <button class="btn clear" onclick="clearDisplay()">Clear</button>
+        </div>
+    </div>
+    <script >let displayValue = '';
+        let currentOperation = null;
+        let firstOperand = null;
+        let secondOperand = null;
+        let isNewInput = true;
+        
+        function appendNumber(number) {
+            if (!isNewInput) {
+                displayValue = '';
+                isNewInput = true;
+            }
+            displayValue += number;
+            updateDisplay();
+        
+            if (currentOperation) {
+                secondOperand = parseFloat(displayValue);
+                calculate();
+            }
+        }
+        
+        function setOperation(operation) {
+            if (firstOperand === null) {
+                firstOperand = parseFloat(displayValue);
+            } else if (currentOperation) {
+                calculate();
+                firstOperand = parseFloat(displayValue);
+            }
+            currentOperation = operation;
+            isNewInput = false;
+        }
+        
+        function calculate() {
+            if (currentOperation === null || secondOperand === null) return;
+        
+            let result;
+        
+            switch (currentOperation) {
+                case '+':
+                    result = firstOperand + secondOperand;
+                    break;
+                case '-':
+                    result = firstOperand - secondOperand;
+                    break;
+                case '*':
+                    result = firstOperand * secondOperand;
+                    break;
+                case '/':
+                    result = firstOperand / secondOperand;
+                    break;
+                default:
+                    return;
+            }
+        
+            displayValue = result.toString();
+            updateDisplay();
+        }
+        
+        function clearDisplay() {
+            displayValue = '';
+            currentOperation = null;
+            firstOperand = null;
+            secondOperand = null;
+            isNewInput = true;
+            updateDisplay();
+        }
+        
+        function updateDisplay() {
+            document.getElementById('display').value = displayValue;
+        }
+        </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+}
+
+.calculator {
+    width: 350px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+    border: 1px solid #dcdcdc;
+    padding: 10px;
+}
+
+.calculator-header {
+    background-color: #1f4068;
+    padding: 15px;
+    color: #ffffff;
+    text-align: left;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0;
+}
+
+.calculator-display {
+    background-color: #162447;
+    padding: 20px;
+    text-align: right;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.calculator-display input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-size: 2.5em;
+    text-align: right;
+    outline: none;
+    padding-right: 10px;
+}
+
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background-color: #cfcfcf;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.operator {
+    background-color: #0077b6;
+    color: white;
+}
+
+.operator:hover {
+    background-color: #005f87;
+}
+
+.clear {
+    background-color: #e63946;
+    color: white;
+    grid-column: span 4;
+}
+
+.clear:hover {
+    background-color: #d62828;
+}
